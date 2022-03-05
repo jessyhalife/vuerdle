@@ -2,4 +2,4 @@
 
 This is my first project using Vue!
 
-DEMO: https://vuerdle.vercel.app/
+DEMO: https://vuerdle.jessyha.life/

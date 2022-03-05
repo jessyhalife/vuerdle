@@ -113,7 +113,7 @@ export default defineComponent({
   },
   mounted() {
     this.word = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
-
+    console.log(this.word);
     document.addEventListener("keyup", this.handleKey);
   },
   unmounted() {
@@ -124,30 +124,31 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="alert alert-danger fade show" role="alert" v-if="error">
-    <strong>Error!</strong> {{ error }}
-  </div>
-  <div
-    class="alert fade show"
-    role="alert"
-    v-if="!isPlaying"
-    :class="{
-      'alert-success': status === 'WIN',
-      'alert-danger': status === 'LOSE',
-    }"
-  >
-    <strong
-      >{{ messages[currentRow] }}:
-      {{
-        status === "WIN"
-          ? "You won!"
-          : `Next time maybe... the word was ` + word
-      }}
-    </strong>
-    <p>
-      New game starting in {{ interval }} seconds (or
-      <a @click="reset" href="#" class="alert-link">start right now!</a>)
-    </p>
+  <div class="alert-container">
+    <div class="alert alert-danger fade show" role="alert" v-if="error">
+      <strong>Error!</strong> {{ error }}
+    </div>
+    <div
+      class="alert fade show"
+      role="alert"
+      v-if="!isPlaying"
+      :class="{
+        'alert-success': status === 'WIN',
+        'alert-danger': status === 'LOSE',
+      }"
+    >
+      <strong
+        >{{ messages[currentRow] }}:
+        {{
+          status === "WIN"
+            ? "You won!"
+            : `Next time maybe... the word was ` + word
+        }}
+      </strong>
+      <p>New game starting in {{ interval }} seconds</p>
+
+      <a @click="reset" href="#" class="alert-link">start right now!</a>
+    </div>
   </div>
   <div class="d-flex flex-column mw-50 mx-auto">
     <div
@@ -194,5 +195,23 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.alert-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.alert {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 480px;
+}
+@media screen and (max-width: 768px) {
+  .alert {
+    top: -52px;
+  }
 }
 </style>

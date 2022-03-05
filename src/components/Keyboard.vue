@@ -21,11 +21,14 @@ export default defineComponent({
     handleClick(index: number, letterIndex: number) {
       let letter;
 
-      if (index === 2) {
+      if (
+        index === 2 &&
+        (letterIndex === 0 ||
+          letterIndex === this.KEYBOARD_LETTERS[index].length - 1)
+      ) {
         if (letterIndex === 0) letter = "ENTER";
         else if (letterIndex === this.KEYBOARD_LETTERS[index].length - 1)
           letter = "BACKSPACE";
-        else letter = this.KEYBOARD_LETTERS[letterIndex].toUpperCase();
       } else {
         letter = this.KEYBOARD_LETTERS[index][letterIndex].toUpperCase();
       }
@@ -44,23 +47,24 @@ export default defineComponent({
     >
       <div
         @click="handleClick(index, letterIndex)"
-        class="letter mx-2 my-2 text-white"
+        class="letter"
         v-for="(letter, letterIndex) in line"
         :key="letter"
         :class="{
           long:
             index === 2 &&
             (letterIndex === 0 || letterIndex === line.length - 1),
-          'bg-secondary': !letters?.[letter] || letters?.[letter] === 'ABSENT',
+          'bg-secondary': letters?.[letter] === 'ABSENT',
           'bg-success': letters?.[letter] === 'CORRECT',
           'bg-warning': letters?.[letter] === 'PRESENT',
+          'text-white': letters?.[letter],
         }"
       >
         <span class="h6" v-if="index === 2 && letterIndex === 0">ENTER</span>
         <span
           class="h6"
           v-else-if="index === 2 && letterIndex === line.length - 1"
-          >BORRAR</span
+          >DEL</span
         >
         <span class="h4" v-else>{{ letter }}</span>
       </div>
@@ -69,14 +73,27 @@ export default defineComponent({
 </template>
 
 <style scoped>
+.h6 {
+  margin: 0;
+}
 .letter {
   width: 48px;
   height: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 8px;
+  margin: 4px;
+  background-color: lightgray;
+  color: black;
 }
 .long {
-  width: 124px;
+  width: 84px;
+}
+
+@media screen and (max-width: 768px) {
+  .letter {
+    margin: 2px;
+  }
 }
 </style>

@@ -12,7 +12,10 @@ import Game from "./components/Game.vue";
     <main class="container">
       <Game />
     </main>
-    <footer>Made with ❤️ by @jessyhalife</footer>
+    <footer>
+      Made with ❤️ &nbsp; by
+      <a href="https://github.com/jessyhalife" target="_blank">@jessyhalife</a>
+    </footer>
   </div>
 </template>
 

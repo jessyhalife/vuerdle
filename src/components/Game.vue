@@ -84,13 +84,7 @@ export default defineComponent({
         )
       ) {
         this.status = GAME_STATUS.WIN;
-        this.isPlaying = false;
-        setTimeout(() => {
-          window.location.reload();
-        }, 10000);
-        setInterval(() => {
-          this.interval--;
-        }, 1000);
+        this.refreshGame();
         return;
       } else {
         this.currentCol = 0;
@@ -100,7 +94,18 @@ export default defineComponent({
       if (this.currentRow >= 6) {
         this.status = GAME_STATUS.LOSE;
         this.isPlaying = false;
+        this.refreshGame();
       }
+    },
+    refreshGame() {
+      this.isPlaying = false;
+      setTimeout(() => {
+        window.location.reload();
+      }, 10000);
+      setInterval(() => {
+        console.log("holis");
+        this.interval--;
+      }, 1000);
     },
     processLetter(letter: string, index: number) {
       if (letter === this.word[index]) {

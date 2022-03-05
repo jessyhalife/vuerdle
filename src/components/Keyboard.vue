@@ -26,9 +26,9 @@ export default defineComponent({
         (letterIndex === 0 ||
           letterIndex === this.KEYBOARD_LETTERS[index].length - 1)
       ) {
-        if (letterIndex === 0) letter = "ENTER";
+        if (letterIndex === 0) letter = "BACKSPACE";
         else if (letterIndex === this.KEYBOARD_LETTERS[index].length - 1)
-          letter = "BACKSPACE";
+          letter = "ENTER";
       } else {
         letter = this.KEYBOARD_LETTERS[index][letterIndex].toUpperCase();
       }
@@ -60,11 +60,11 @@ export default defineComponent({
           'text-white': letters?.[letter],
         }"
       >
-        <span class="h6" v-if="index === 2 && letterIndex === 0">ENTER</span>
+        <span class="h6" v-if="index === 2 && letterIndex === 0">DEL</span>
         <span
           class="h6"
           v-else-if="index === 2 && letterIndex === line.length - 1"
-          >DEL</span
+          >ENTER</span
         >
         <span class="h4" v-else>{{ letter }}</span>
       </div>

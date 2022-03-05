@@ -1,5 +1,5 @@
 <script lang="ts">
-import { WORDS } from "@/contsants/wordlist";
+import WORDS from "../contsants/words.json";
 import { defineComponent } from "vue";
 import type { Attempt, KeyboardStatus } from "../types/attempt";
 import { AttemptStatus } from "../types/attempt";
@@ -64,7 +64,7 @@ export default defineComponent({
     handleEnter() {
       const word = this.attempts[this.currentRow].map((a) => a.letter).join("");
       if (!WORDS.includes(word.toLocaleLowerCase())) {
-        this.error = "WORD DOES NOT EXIST";
+        this.error = "Esa palabra no existe!";
         return;
       }
       this.error = null;
@@ -111,7 +111,7 @@ export default defineComponent({
       window.location.reload();
     },
   },
-  mounted() {
+  async mounted() {
     this.word = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
     document.addEventListener("keyup", this.handleKey);
   },
@@ -144,9 +144,9 @@ export default defineComponent({
             : `Next time maybe... the word was ` + word
         }}
       </strong>
-      <p>New game starting in {{ interval }} seconds</p>
+      <p>Reiniciando juego en {{ interval }} segundos</p>
 
-      <a @click="reset" href="#" class="alert-link">start right now!</a>
+      <a @click="reset" href="#" class="alert-link">reiniciar ya!</a>
     </div>
   </div>
   <div class="d-flex flex-column mw-50 mx-auto">
@@ -207,10 +207,6 @@ export default defineComponent({
   margin-left: auto;
   margin-right: auto;
   max-width: 480px;
-}
-@media screen and (max-width: 768px) {
-  .alert {
-    top: -52px;
-  }
+  top: -52px;
 }
 </style>

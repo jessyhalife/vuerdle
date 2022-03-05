@@ -73,7 +73,8 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.h6 {
+.h6,
+.h4 {
   margin: 0;
 }
 .letter {
@@ -94,6 +95,15 @@ export default defineComponent({
 @media screen and (max-width: 768px) {
   .letter {
     margin: 2px;
+  }
+  .h6 {
+    font-size: 0.75em;
+    font-weight: bold;
+  }
+
+  .h4 {
+    font-size: 0.875em;
+    font-weight: bold;
   }
 }
 </style>

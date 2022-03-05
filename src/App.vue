@@ -5,8 +5,7 @@ import Game from "./components/Game.vue";
 <template>
   <div class="layout">
     <header class="p-4 text-center">
-      <h1>VUERDLE</h1>
-      <hr />
+      <h1><img src="/logo.png" />UERDLE (ES)</h1>
     </header>
 
     <main class="container">
@@ -20,6 +19,10 @@ import Game from "./components/Game.vue";
 </template>
 
 <style scoped>
+img {
+  width: 48px;
+  object-fit: contain;
+}
 .layout {
   display: flex;
   flex-direction: column;

@@ -73,6 +73,7 @@ export default defineComponent({
         this.attempts[this.currentRow][index].status = status;
         this.letters[att.letter] = status;
       });
+
       if (
         this.attempts[this.currentRow].every(
           (att) => att.status === AttemptStatus.CORRECT
@@ -86,6 +87,7 @@ export default defineComponent({
         setInterval(() => {
           this.interval--;
         }, 1000);
+        return;
       } else {
         this.currentCol = 0;
       }
@@ -111,6 +113,7 @@ export default defineComponent({
   },
   mounted() {
     this.word = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
+
     document.addEventListener("keyup", this.handleKey);
   },
   unmounted() {
@@ -135,7 +138,11 @@ export default defineComponent({
   >
     <strong
       >{{ messages[currentRow] }}:
-      {{ status === "WIN" ? "You won!" : "Next time maybe" }}
+      {{
+        status === "WIN"
+          ? "You won!"
+          : `Next time maybe... the word was ` + word
+      }}
     </strong>
     <p>
       New game starting in {{ interval }} seconds (or

@@ -20,7 +20,7 @@ export default defineComponent({
   methods: {
     handleClick(index: number, letterIndex: number) {
       let letter;
-      console.log(index, letterIndex);
+
       if (index === 2) {
         if (letterIndex === 0) letter = "ENTER";
         else if (letterIndex === this.KEYBOARD_LETTERS[index].length - 1)
@@ -29,7 +29,7 @@ export default defineComponent({
       } else {
         letter = this.KEYBOARD_LETTERS[index][letterIndex].toUpperCase();
       }
-      console.log(letter);
+
       this.$emit("on-key-press", { key: letter } as KeyboardEvent);
     },
   },

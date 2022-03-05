@@ -113,7 +113,6 @@ export default defineComponent({
   },
   mounted() {
     this.word = WORDS[Math.floor(Math.random() * WORDS.length)].toUpperCase();
-    console.log(this.word);
     document.addEventListener("keyup", this.handleKey);
   },
   unmounted() {

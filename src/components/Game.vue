@@ -50,9 +50,10 @@ export default defineComponent({
       if (letter === "ENTER" && this.attempts[this.currentRow]?.length === 5) {
         this.handleEnter();
       }
+
       if (this.currentCol > 4) return;
       // check if letter is between A and Z
-      if (!/^[A-Z]$/.test(letter)) return;
+      if (!/^[A-Z]$/.test(letter) && letter !== "Ñ") return;
       if (!this.attempts[this.currentRow]) {
         this.attempts[this.currentRow] = [];
       }

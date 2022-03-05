@@ -1,1 +1,1 @@
-export default ["QWERTYUIOP", "ASDFGHJKL", "XZXCVBNMX"];
+export default ["QWERTYUIOP", "ASDFGHJKLÑ", "XZXCVBNMX"];

@@ -65,6 +65,9 @@ export default defineComponent({
       const word = this.attempts[this.currentRow].map((a) => a.letter).join("");
       if (!WORDS.includes(word.toLocaleLowerCase())) {
         this.error = "Esa palabra no existe!";
+        setTimeout(() => {
+          this.error = null;
+        }, 1000);
         return;
       }
       this.error = null;
@@ -154,6 +157,7 @@ export default defineComponent({
       v-for="(row, index) in new Array(6).fill('')"
       :key="index"
       class="d-flex flex-row justify-content-center mt-2"
+      :class="{ shake: currentRow === index && error }"
     >
       <div
         class="border mx-2 tile"
@@ -208,5 +212,35 @@ export default defineComponent({
   margin-right: auto;
   max-width: 480px;
   top: -52px;
+}
+
+.shake {
+  animation: shake 0.52s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 </style>
